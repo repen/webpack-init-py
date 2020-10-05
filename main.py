@@ -106,10 +106,15 @@ def create_files():
         logger.info("file: %s created", fl[0])
 
 
-run_cmd(cmd1)
-run_cmd(cmd2)
-run_cmd(cmd3)
-add_cmd_package()
-create_config_wp()
-create_structure_dir()
-create_files()
+def main():
+    run_cmd(cmd1)
+    run_cmd(cmd2)
+    run_cmd(cmd3)
+    add_cmd_package()
+    create_config_wp()
+    create_structure_dir()
+    create_files()
+    logger.info("End. Good job!!!")
+
+if __name__ == '__main__':
+    main()
