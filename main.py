@@ -1,6 +1,6 @@
 from subprocess import check_output, CalledProcessError
 import logging, json, pathlib, os
-
+import pprint
 
 logging.basicConfig(format='%(asctime)s : line %(lineno)-3s : %(name)s : %(levelname)s : %(message)s',
                     level=logging.INFO)
@@ -69,7 +69,7 @@ def add_cmd_package():
     with open("package.json") as f:
         data = json.load(f)
     data['scripts']["start"] = "webpack -d"
-    data['scripts']["watch"] = "webpack -d --watch"
+    data['scripts']["watch"] = "webpack --watch --devtool eval-source-map"
     
     data['scripts']["style"]     = "sass --no-source-map style/base.scss:style/style.min.css"
     data['scripts']["wstyle"]    = "sass style/base.scss style/style.min.css --watch"
@@ -77,7 +77,7 @@ def add_cmd_package():
 
 
     with open("package.json", "w") as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=2, sort_keys=True)
     logger.info("update package.json \n %s", data)
 
 def create_config_wp():
